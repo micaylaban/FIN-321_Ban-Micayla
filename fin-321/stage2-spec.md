@@ -1,4 +1,4 @@
-# [Spec Title] – Technical Specification Template
+# U.S. Tech Services Firm: Spec
 
 **Created by:** [name]  
 **Updated by:** [name]  
