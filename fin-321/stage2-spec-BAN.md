@@ -41,32 +41,38 @@ Our U.S. Tech Services firm expects to receive a foreign-currency receivable of 
 
 ## 3. Assumptions & Constraints
 
-1. Rates/quotes: 
-- Exchange rates are expressed as USD per EUR
-- Interest rates are annual, simple-compounded for money-market parity checks
-- F₀ is the 1-year outright forward EURUSD
-2. Cash flow timing: Single lump-sum collection exactly in 12 months (t = 1)
-3. Premiums: Option premiums are paid upfront in USD
-4. Credit/transaction costs: Excluded
-5. Taxes/accounting: Not modeled
-6. Liquidity: Sufficient market liquidity to execute at total value
-7. Rounding: FX conversions and contract counts are rounded at the end, rather than after each step
-8. Sensitivity grid: Tests different EURUSD rates at maturity around the current spot rate
+1. Exchange rates are expressed as USD per EUR.
+2. Interest rates are annual, simple-compounded for money-market parity checks.
+3. The forward rate provided represents a 1-year maturity.
+4. Single lump-sum collection exactly in 12 months (t = 1).
+5. Option premiums are paid upfront in USD.
+6. Transaction and credit costs are excluded from the analysis.
+7. No early exercise or counterparty default is assumed.
+8. All positions are held to maturity for consistency in comparison.
+9. FX conversions and contract counts are rounded at the end, rather than after each step.
 
 ---
 
 ## 4. Calculation Flow
 
-Describe the logic and sequencing of your analysis — as if briefing a junior analyst or AI model builder. Focus on **order of operations**, not formulas.
-
-Example flow:
-1. Compute USD proceeds under the forward hedge.  
-2. Recreate a synthetic forward using money market parity to validate rates.  
-3. Compute option hedge outcomes for both the EUR put and EUR call under varying spot outcomes \(S_T\).  
-4. Compare USD results across hedges at the base case and across sensitivity scenarios.  
-5. Summarize the trade-offs (certainty vs. optionality vs. cost).  
-
-> *Your goal: anyone reading this section should know exactly how to implement your logic in Excel or code — without you explaining formulas.*
+1. Forward Hedge
+- Compute USD proceeds using the forward rate (F₀).
+- Treat this as the certainty benchmark.
+2. Money Market Hedge
+- Construct a synthetic forward using interest rate parity:
+-   Borrow or lend in EUR and USD at respective interest rates.
+-   Cross-validate proceeds against the forward hedge outcome.
+3. Options Hedge
+- Model two cases:
+-   EUR Put: provides downside protection for EUR depreciation.
+-   EUR Call: provides upside participation for EUR appreciation.
+- Deduct option premiums to obtain net USD proceeds under varying S_T.
+4. Sensitivity Analysis
+- Vary EURUSD spot rate at maturity (S_T).
+- Compare all three hedge outcomes (Forward, Money Market, Option).
+5. Summary Evaluation
+- Present comparative results in tables and a line chart.
+- Discuss trade-offs between certainty, optionality, and cost.
 
 ---
 
@@ -78,6 +84,7 @@ Example flow:
 | `USD_mm` | USD proceeds from money market hedge | Numeric | Cross-check against forward |
 | `USD_put` | USD proceeds from EUR put hedge | Table | Sensitivity & protection |
 | `USD_call` | USD proceeds from EUR call hedge | Table | Optional upside case |
+| `Comparison_table` | Summary of USD outcomes across all hedges | Table | Highlights relative performance |
 | `Chart_1` | Hedge outcomes vs. S_T | Line chart | Visual comparison |
 | `Summary` | Written conclusion | 1–2 paragraphs | Executive-ready takeaway |
 
@@ -85,23 +92,27 @@ Example flow:
 
 ## 6. Sensitivity Plan
 
-Define how you will test and visualize FX outcomes.
-
-Example:
-> Vary EURUSD spot at maturity \(S_T\) from 0.95×S₀ to 1.05×S₀ in increments of 0.01.  
-> For each value, compute USD proceeds under all hedge strategies.  
-> Present results as a comparison table and line chart.
-
-> *Professional analysts always test sensitivity — it shows how robust their recommendations are.*
+1. Variable tested: EURUSD spot rate at maturity (S_T).
+2. Range: 0.95×S₀ to 1.05×S₀ (in increments of 0.01).
+3. Procedure:
+- Compute USD proceeds for each hedge across the range of S_T values.
+- Record and visualize differences in performance.
+4. Visualization: Present as a comparison table and line chart of USD proceeds vs. S_T.
 
 ---
 
 ## 7. Limitations & Next Steps
 
-Briefly note any analytical limits (e.g., volatility ignored, credit risk excluded) and outline your immediate next step (e.g., model build in Stage 3).
-
-Example phrasing:
-> This specification does not incorporate implied volatility or transaction costs. The next phase will involve constructing an Excel model implementing this logic to quantify results under each hedge structure.
+This specification assumes stable market conditions and excludes implied volatility, transaction costs, and credit risk. The model does not account for potential timing mismatches or basis risk between hedge and cash flow settlement dates. The next step will involve building an Excel model implementing this calculation logic to quantify outcomes under each hedge strategy. 
 
 ---
+
+## 8. References
+
+“EUR 1 Year IRS Interest Rate Swap .” Investing.Com, www.investing.com/rates-bonds/eur-1-year-irs-interest-rate-swap. Accessed 5 Nov. 2025.
+
+“EUR/USD (EURUSD=x) Live Rate, Chart & News.” Yahoo! Finance, Yahoo!, 5 Nov. 2025, finance.yahoo.com/quote/EURUSD=X/. 
+
+“U.S. 1 Year Treasury.” CNBC, CNBC, www.cnbc.com/quotes/US1Y. Accessed 5 Nov. 2025. 
+
 
