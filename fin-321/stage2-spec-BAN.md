@@ -1,9 +1,11 @@
+# FIN-321_Ban-Micayla
+
 # U.S. Tech Services Firm: Spec
 
-**Created by:** [name]  
-**Updated by:** [name]  
-**Date Created:** [date]  
-**Date Updated:** [date]  
+**Created by:** Micayla Ban  
+**Updated by:** Micayla Ban  
+**Date Created:** November 4, 2025  
+**Date Updated:** November 4, 2025  
 **Version:** [0.0]
 **LLM Used:"" [LLM] (optional if LLm used)
 
@@ -16,54 +18,40 @@
 
 ## 1. Problem Statement
 
-Briefly restate the exposure and objective in professional terms.
-
-Example phrasing:
-> Our company expects to receive EUR-denominated revenue in 12 months, exposing us to potential FX risk from fluctuations in the EURUSD rate. This specification outlines the analytical framework for quantifying, comparing, and evaluating alternative hedging strategies to mitigate that risk.
-
-Include:
-- Exposure type (receivable or payable)  
-- Foreign currency amount and time horizon  
-- Objective (e.g., protect USD value, preserve upside)  
-- Decision context (corporate treasury or business unit)
-
-> *A strong statement demonstrates clear understanding of both financial context and business implications.*
+Our U.S. Tech Services firm expects to receive a foreign-currency receivable of  €12,500,000 in 12 months, which creates exposure to EURUSD exchange-rate risk. This specification outlines the analytical framework for quantifying, comparing, and evaluating hedging strategies to mitigate that risk. The objective is to protect the USD value of the receivable and balance certainty and cost, while aligning with the company’s corporate treasury hedging policy and overall cash flow protection goals.
 
 ---
 
 ## 2. Inputs (Known Variables)
 
-Create a clean, professional input table. This will become the foundation for your spreadsheet and future AI prompts.
-
 | Variable | Description | Unit | Example | Source |
 |-----------|-------------|------|----------|--------|
-| `FC_AMT` | Foreign-currency receivable | EUR | 1,200,000 | Company data |
-| `S₀` | Current EURUSD spot rate | USD/EUR | [Look up] | Market data |
-| `F₀` | 1-year EURUSD forward rate | USD/EUR | 1.0890 | Provided |
-| `r_USD` | USD 1-year interest rate | % | [Look up] | Market data |
-| `r_EUR` | EUR 1-year interest rate | % | [Look up] | Market data |
+| `FC_AMT` | Foreign-currency receivable | EUR | 12,500,000 | Company data |
+| `S₀` | Current EURUSD spot rate | USD/EUR | 1.1481 | Market data |
+| `F₀` | 1-year EURUSD forward rate | USD/EUR | 1.0910 | Provided |
+| `r_USD` | USD 1-year interest rate | % | 3.673 | Market data |
+| `r_EUR` | EUR 1-year interest rate | % | 2.130 | Market data |
 | `t` | Time to maturity | Years | 1 | Derived |
-| `K_put` | EUR Put strike | USD/EUR | [Set at spot] | Analyst choice |
-| `K_call` | EUR Call strike | USD/EUR | [Set at spot] | Analyst choice |
+| `K_put` | EUR Put strike | USD/EUR | 1.1481 | Analyst choice |
+| `K_call` | EUR Call strike | USD/EUR | 1.1481 | Analyst choice |
 | `Premium_put` | Put premium | USD per contract | 0.017 | Scenario |
 | `Premium_call` | Call premium | USD per contract | 0.022 | Scenario |
-
-> *Tip:* Keep labels short and standardized. Think like a financial modeler — these names should become variable names, spreadsheet inputs, or prompt parameters later.
 
 ---
 
 ## 3. Assumptions & Constraints
 
-State all conventions used. Clarity here ensures reproducibility.
-
-Example list:
-- Interest rates are quoted on a simple annual basis.  
-- Forward rate provided represents a 1-year maturity.  
-- Transaction and credit costs are excluded.  
-- Option premiums are paid upfront in USD.  
-- Exchange rates expressed as USD per EUR.  
-
-> *Write assumptions so another treasury analyst could replicate your results exactly.*
+1. Rates/quotes: 
+- Exchange rates are expressed as USD per EUR
+- Interest rates are annual, simple-compounded for money-market parity checks
+- F₀ is the 1-year outright forward EURUSD
+2. Cash flow timing: Single lump-sum collection exactly in 12 months (t = 1)
+3. Premiums: Option premiums are paid upfront in USD
+4. Credit/transaction costs: Excluded
+5. Taxes/accounting: Not modeled
+6. Liquidity: Sufficient market liquidity to execute at total value
+7. Rounding: FX conversions and contract counts are rounded at the end, rather than after each step
+8. Sensitivity grid: Tests different EURUSD rates at maturity around the current spot rate
 
 ---
 
@@ -84,8 +72,6 @@ Example flow:
 
 ## 5. Outputs
 
-List expected results from the model. These become your **spreadsheet outputs**, **AI prompt targets**, and **Stage 5 discussion points**.
-
 | Output | Description | Format | Purpose |
 |---------|--------------|---------|----------|
 | `USD_forward` | USD proceeds from forward hedge | Numeric | Certainty benchmark |
@@ -94,8 +80,6 @@ List expected results from the model. These become your **spreadsheet outputs**,
 | `USD_call` | USD proceeds from EUR call hedge | Table | Optional upside case |
 | `Chart_1` | Hedge outcomes vs. S_T | Line chart | Visual comparison |
 | `Summary` | Written conclusion | 1–2 paragraphs | Executive-ready takeaway |
-
-> *Outputs should read like a professional financial dashboard — clear, repeatable, and decision-focused.*
 
 ---
 
