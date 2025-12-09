@@ -10,14 +10,23 @@ Use the logic in:
 
 # INPUT VARIABLES
 FC_AMT (EUR receivable) = 12,500,000
+
 S0 (spot rate, USD per EUR) = 1.1481
+
 F0 (1-year forward rate, USD per EUR) = 1.0910
+
 r_USD = 3.67%
+
 r_EUR = 2.13% 
+
 K_put = 1.1481
+
 K_call = 1.1481
+
 Premium_put = 0.017
+
 Premium_call = 0.022
+
 t (years to maturity) = 1.0
 
 # SPREADSHEET REQUIREMENTS
