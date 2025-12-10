@@ -68,7 +68,7 @@ Implement the following logic using Excel formulas that reference named ranges, 
   - USD_call = USD_call_ST at S_T = S0
 4. Sensitivity Analysis (±5% on S₀)
 - Create a table with columns: S_T, Unhedged USD proceeds, Forward hedge USD proceeds, Money Market hedge USD proceeds, Put hedge USD proceeds, Call hedge USD proceeds
-- S_T ranges from 0.95 × S0 to 1.05 × S0 in increments of 0.01.
+- S_T ranges from 0.95 × S0 to 1.05 × S0 in increments of 0.01. (Example for the first value: 0.95 * S0)
 - For each S_T compute: Unhedged USD proceeds, USD_forward, USD_mm, USD_put, USD_call
 
 Forward and money-market outcomes must remain constant across S_T.
@@ -83,6 +83,7 @@ Apply consistent color coding throughout the workbook:
 - Blue: Assumptions / parameters 
 - Green: All formula cells (forward hedge, MM hedge, option payoffs, sensitivity calculations, CIP checks)
 - Gray: Output / KPI cells (USD_forward, USD_mm, key base-case option results, summary comparisons, headline KPIs)
+  
 Use bold section headings for each numbered section.
 Align numbers with appropriate formats:
 - FX rates: 4–5 decimal places
