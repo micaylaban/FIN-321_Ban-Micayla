@@ -106,5 +106,5 @@ Verify:
 # EXPORT
 Return a completed downloadable .xlsx file with formulas intact.
 
-# SPREADSHEET
+# DELIVERABLE 2: SPREADSHEET
 [stage4-spreadsheet-BAN.xlsx](https://github.com/user-attachments/files/24114128/stage4-spreadsheet-BAN.xlsx)
